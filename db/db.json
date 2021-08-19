@@ -1,30 +1,12 @@
 [
     {
-        "title": "Test Title",
-        "text": "Test text"
-    },
-    {
-        "title": "Test 3",
-        "text": "Test 2"
-    },
-    {
         "title": "sample 1",
         "text": "sas",
-        "note_id": "112e"
+        "id": "112e"
     },
     {
-        "title": "testing 2",
-        "text": "sas",
-        "note_id": "ad34"
-    },
-    {
-        "title": "sasas",
-        "text": "asas",
-        "note_id": "4f5d"
-    },
-    {
-        "title": "sample today",
-        "text": "today text",
-        "note_id": "405e"
+        "title": "going to learn DB",
+        "text": "MySQL today",
+        "id": "9108"
     }
 ]

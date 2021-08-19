@@ -41,7 +41,7 @@ if (title && text ) {
     const newNote = {
       title,
       text,
-   note_id: uuid()
+   id: uuid()
     };
 
 readAndAppend(newNote,"./db/db.json")
@@ -70,21 +70,30 @@ const readAndAppend = (content, file) => {
   );
 
   //Delete a particular note
-  app.delete('/api/notes/:id',(res,req) => {
+  app.delete('/api/notes/:id',(req,res) => {
+      const {id} = req.params;
+      console.log("id" + id)
   fs.readFile('./db/db.json', 'utf8', (err, data) => {
     if (err) {
       console.error(err);
     } else {
-      const parsedData = JSON.parse(data);
-      const note = parsedData.find(n => n.note_id === parseInt(req.params.id));
-  if(!note) res.json("ID not found!")
-  else{
-      const index = parsedData.indexOf(note);
-      parsedData.splice(index,1);
-      res.json("Deleted")
+       
+      const parsedNote = JSON.parse(data);
+      const note = parsedNote.find(notes => notes.id === (id));
+      console.log("note: "+ JSON.stringify(note))
+   if(!note) console.error(err);
+   else{
+    
+        let index = parsedNote.indexOf(note);
+        console.log('index:' + index)
+      parsedNote.splice(index,1);
+      console.log(JSON.stringify(parsedNote))
+      writeToFile('./db/db.json', parsedNote)
+     res.json("Deleted note")
   }
 }
     });
+    
   });
 
 app.listen(PORT, () =>
