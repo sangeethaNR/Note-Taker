@@ -40,6 +40,8 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 
 4. To run the application type node server.js. This will start localhost server.
 
+## Heroku link
+ The application is deployed in heroku. Click on the <a href="https://lit-fjord-19799.herokuapp.com/">link to see application in live!
 ## Credits
 google
 
