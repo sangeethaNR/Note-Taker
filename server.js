@@ -69,6 +69,24 @@ const readAndAppend = (content, file) => {
     err ? console.error(err) : console.info(`\nData written to ${destination}`)
   );
 
+  //Delete a particular note
+  app.delete('/api/notes/:id',(res,req) => {
+  fs.readFile('./db/db.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      const parsedData = JSON.parse(data);
+      const note = parsedData.find(n => n.note_id === parseInt(req.params.id));
+  if(!note) res.json("ID not found!")
+  else{
+      const index = parsedData.indexOf(note);
+      parsedData.splice(index,1);
+      res.json("Deleted")
+  }
+}
+    });
+  });
+
 app.listen(PORT, () =>
   console.log(`Example app listening at http://localhost:${PORT}`)
 );
