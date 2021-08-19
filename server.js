@@ -90,7 +90,7 @@ const writeToFile = (destination, content) =>
 //Delete a particular note
 app.delete('/api/notes/:id', (req, res) => {
     const { id } = req.params;
-    console.log("id" + id)
+    
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
         if (err) {
             console.error(err);
@@ -98,14 +98,14 @@ app.delete('/api/notes/:id', (req, res) => {
 
             const parsedNote = JSON.parse(data);
             const note = parsedNote.find(notes => notes.id === (id));
-            console.log("note: " + JSON.stringify(note))
+            
             if (!note) console.error(err);
             else {
 
                 let index = parsedNote.indexOf(note);
-                console.log('index:' + index)
+                
                 parsedNote.splice(index, 1);
-                console.log(JSON.stringify(parsedNote))
+              
                 writeToFile('./db/db.json', parsedNote)
                 res.json("Deleted note")
             }
